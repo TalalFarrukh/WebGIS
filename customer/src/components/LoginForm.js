@@ -1,25 +1,60 @@
+import React from 'react'
 import {Form, Button, Card} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
-
+  
   const initialDetails = Object.freeze({username: '', password: ''})
   const [details, setDetails] = useState(initialDetails)
 
+  const changeDetails = (e) => {
+    setDetails({ ...details, [e.target.name]: e.target.value.trim() })
+  }
+
+  var owner = [{"owner_id":'',"username":"","password":"","store_exists":''}]
+  var userStore = [{"store_id":'',"owner_id":'',"quantity":0,"price_per_unit":0,"name":"","geometry":"","st_x":0,"st_y":0}]
   const [correct, setCorrect] = useState(false)
 
-  const changeDetails = (e) => {
-    setDetails({...details, [e.target.name]: e.target.value.trim()})
-  }
+  const [x, setX] = useState('')
+  const [y, setY] = useState('')
 
   const submitDetails = (e) => {
-    e.preventDefault();
-    console.log(details)
-    setCorrect(true)
+    e.preventDefault()
+    let user = details['username']; let pass = details['password']
+   
+    fetch('http://localhost:5000/userlogin', {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user, pass})
+    })
+    .then(response => { return response.json() }) 
+    .then(data => { owner=data[0]; setX(data[0]) })
+    .then(() => {
+      if(owner) {
+        let ownerid = owner.owner_id
+        
+        fetch('http://localhost:5000/ownerStore', {
+          method: 'post',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ownerid})
+        }).then(response => { return response.json() })
+          .then(data => { userStore=data[0]; setY(data[0]) })
+          .then(() => setCorrect(true))
+      }
+      else console.log("Not working")
+    })
   }
 
+  const nv = useNavigate()
+  
   return (
     <Card border='info'>
     <Form>
@@ -31,11 +66,11 @@ const LoginForm = () => {
         
         <Form.Group className='logsignField'>
           <Form.Label><h5>Password</h5></Form.Label>
-          <Form.Control name='password' type='text' onChange={changeDetails} />
+          <Form.Control name='password' type='password' onChange={changeDetails} />
         </Form.Group>
 
         <Button className='logsignButton' variant='dark' type='submit' onClick={submitDetails} >Submit</Button>
-        {correct===true ? <Navigate to='/Admin/'/> : null}
+        {correct===true ? nv('/Admin/', {state:{x,y}}) : null}
     </Form>
 
     <Card.Body>

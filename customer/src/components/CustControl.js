@@ -1,47 +1,55 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import {Accordion, Form, Button} from 'react-bootstrap'
 
-const CustControl = ({cb, cbB, cbS, data}) => {   //Replace data with actual data
+const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
 
   const [buffer, setBuffer] = useState('')
-  const changeBuffer = (e) => {setBuffer(e.target.value.trim())}
-  const submitBuffer = (e) => {e.preventDefault(); cbB(buffer)}
-  const clearBuffer = (e) => {e.preventDefault(); cbB('')}
+  const changeBuffer = (e) => { setBuffer(e.target.value.trim()) }
+  const submitBuffer = (e) => { cbB(buffer) }
+  const clearBuffer = (e) => { cbB('') }
 
-  const initialQ = Object.freeze({greaterThan: '', lessThan: ''})
-  const initialP = Object.freeze({greaterThan: '', lessThan: ''})
+  const initialQ = Object.freeze({greaterThan: '', lessThan: ''}); const initialP = Object.freeze({greaterThan: '', lessThan: ''})
+  const [quantity, setQuantity] = useState(initialQ); const [price, setPrice] = useState(initialP)
 
-  const [quantity, setQuantity] = useState(initialQ)
-  const [price, setPrice] = useState(initialP)
-
-  const handleChangeQ = (e) => {
-    setQuantity({...quantity, [e.target.name]: e.target.value.trim()})
-  }
-  const handleChangeP = (e) => {
-    setPrice({...price, [e.target.name]: e.target.value.trim()})
-  }
+  const handleChangeQ = (e) => { setQuantity({...quantity, [e.target.name]: e.target.value.trim()}) }
+  const handleChangeP = (e) => { setPrice({...price, [e.target.name]: e.target.value.trim()}) }
 
   const handleSubmitQ = (e) => {        //Compare with actual quantity
-    e.preventDefault()
-    console.log(quantity)
 
-    let filterDataQ = data.filter(pts => {
-      return pts.stallCount>quantity.greaterThan && pts.stallCount<quantity.lessThan
-    })
+    let quantity_greater_than  = quantity.greaterThan; let quantity_less_than  = quantity.lessThan
 
-    cb(filterDataQ)
+    fetch("http://localhost:5000/filterQuantity", {
+            method: "post",
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({quantity_greater_than, quantity_less_than}) 
+            
+        })
+        .then(response => {return response.json()}) 
+        .then(data => { cb(data) })
   }
+
   const handleSubmitP = (e) => {      //Compare with actual price
-    e.preventDefault()
-    console.log(price)
     
-    let filterDataP = data.filter(pts => {
-      return pts.stallCount>price.greaterThan && pts.stallCount<price.lessThan
-    })
+    let price_greater_than  = price.greaterThan; let price_less_than  = price.lessThan
 
-    cb(filterDataP)
+    fetch("http://localhost:5000/filterPrice", {
+            method: "post",
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({price_greater_than, price_less_than}) 
+            
+        })
+        .then(response => {return response.json()}) 
+        .then(data => { cb(data) })    
   }
 
+  const clearFilter = (e) => { cF() }
   const changeShow = (e) => {e.preventDefault(); cbS()}
 
   return (
@@ -54,8 +62,8 @@ const CustControl = ({cb, cbB, cbS, data}) => {   //Replace data with actual dat
         <Form>
           <Form.Group className='field-style'><Form.Control name='bufferSize' type='text' placeholder='Enter Buffer size' onChange={changeBuffer} /></Form.Group>
 
-          <Button className='field-style' variant='primary' type='submit' onClick={submitBuffer}>Submit</Button>
-          <Button className='field-style' variant='primary' type='submit' onClick={clearBuffer}>Clear</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={submitBuffer}>Submit</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={clearBuffer}>Clear</Button>
         </Form>
         </Accordion.Body>
       </Accordion.Item>
@@ -68,7 +76,8 @@ const CustControl = ({cb, cbB, cbS, data}) => {   //Replace data with actual dat
           <Form.Group className='field-style'><Form.Control name='greaterThan' type='text' placeholder='Greater than' onChange={handleChangeQ} /></Form.Group>
           <Form.Group className='field-style'><Form.Control name='lessThan' type='text' placeholder='Less than' onChange={handleChangeQ} /></Form.Group>
         
-          <Button className='field-style' variant='primary' type='submit' onClick={handleSubmitQ}>Submit</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={handleSubmitQ} >Submit</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={clearFilter} >Clear</Button>
         </Form>
 
         <Form>
@@ -76,7 +85,8 @@ const CustControl = ({cb, cbB, cbS, data}) => {   //Replace data with actual dat
           <Form.Group className='field-style'><Form.Control name='greaterThan' type='text' placeholder='Greater than' onChange={handleChangeP} /></Form.Group>
           <Form.Group className='field-style'><Form.Control name='lessThan' type='text' placeholder='Less than' onChange={handleChangeP} /></Form.Group>
 
-          <Button className='field-style' variant='primary' type='submit' onClick={handleSubmitP}>Submit</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={handleSubmitP} >Submit</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={clearFilter} >Clear</Button>
         </Form> 
         </Accordion.Body>
       </Accordion.Item>
@@ -84,7 +94,7 @@ const CustControl = ({cb, cbB, cbS, data}) => {   //Replace data with actual dat
       <Accordion.Item eventKey='2'>
         <Accordion.Header>Show Graph</Accordion.Header>
         <Accordion.Body>
-          <Button className='field-style' variant='primary' type='button' onClick={changeShow}>Show/Hide</Button>
+          <Button className='field-style' variant='primary' type='button' onClick={changeShow} >Show/Hide</Button>
         </Accordion.Body>
 
       </Accordion.Item>

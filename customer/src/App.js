@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
 import AdminScreen from './screens/AdminScreen';
@@ -9,12 +10,12 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 const App = () => {
   return (
     <Router>
-      <Header />
+      <Header  />
 
       <main>
       <Routes>
-        <Route path='/' element={<HomeScreen/>} exact />
-        <Route path='/Admin/' element={<AdminScreen/>} />
+        <Route path='/' element={<HomeScreen />} exact />
+        <Route path='/Admin/' element={<AdminScreen />} />
         <Route path='/storeowner/' element={<LoginSignup />} >
           <Route path='login' element={<LoginForm />} />
           <Route path='signup' element={<SignupForm />} />

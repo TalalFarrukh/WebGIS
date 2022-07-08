@@ -115,7 +115,6 @@ const Map = ({ownerData, storeData}) => {
     dispatch(addLayer(d))
   }
     
-  window.location = ''
 
   return (
     <>

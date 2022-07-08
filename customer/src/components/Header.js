@@ -47,8 +47,6 @@ const Header = () => {
 
   }
 
-  window.location = ''
-
   return (
     <header>
         <Navbar bg='dark' variant='dark' expand='lg'>

@@ -33,8 +33,6 @@ const SignupForm = () => {
     .then(data => {alert(data)})
   }
 
-  window.location = ''
-
   return (
     <Card border='info'>
     <Form>

@@ -2,7 +2,8 @@ const express = require('express')
 const PORT = process.env.port || 5000
 const bodyParser = require('body-parser');
 const client = require('./db.js')
-const cors = require('cors');
+const cors = require('cors')
+const path = require("path");
 
 const app = express()
 app.use(cors())
@@ -11,6 +12,11 @@ app.use(bodyParser.urlencoded({
     extended:true
 }))
 app.use(bodyParser.json())
+
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../customer/build")));
+}
 
 app.get('/store', (req,res) => {
     client.query(`SELECT * , ST_X(geometry::geometry), ST_Y(geometry::geometry) FROM store;`, (err, results) => {
@@ -227,6 +233,10 @@ app.post("/getLines", (req, res) => {
   client.end
 })
 
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../customer/build/index.html'))
+// })
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`)

@@ -21,7 +21,7 @@ const SignupForm = () => {
     e.preventDefault(); setSignedUp(true)
     let user = details['username']; let pass = details['password']
     
-    fetch('http://localhost:5000/create', {
+    fetch('/create', {
         method: 'post',
         mode: 'cors',
         headers: {

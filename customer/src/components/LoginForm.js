@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault()
     let user = details['username']; let pass = details['password']
    
-    fetch('/userlogin', {
+    fetch('http://localhost:5000/userlogin', {
         method: 'post',
         mode: 'cors',
         headers: {
@@ -38,7 +38,7 @@ const LoginForm = () => {
       if(owner) {
         let ownerid = owner.owner_id
         
-        fetch('/ownerStore', {
+        fetch('http://localhost:5000/ownerStore', {
           method: 'post',
           mode: 'cors',
           headers: {

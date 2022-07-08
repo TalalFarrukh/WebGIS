@@ -19,20 +19,20 @@ const Map = ({ownerData, storeData}) => {
 
   const [owner, setOwner] = useState([{"owner_id":'',"username":"","password":"","store_exists":''}])
   useEffect(() => {
-    fetch('/owner').then(response => {
+    fetch('http://localhost:5000/owner').then(response => {
       return response.json()
     }).then(ownerData => {setOwner(ownerData)})}, [])
 
   const [dyData, setdyData] = useState([{"store_id":'',"owner_id":'',"quantity":0,"price_per_unit":0,"name":"","geometry":"","st_x":0,"st_y":0}])
   const [store, setStore] = useState([{"store_id":'',"owner_id":'',"quantity":0,"price_per_unit":0,"name":"","geometry":"","st_x":0,"st_y":0}])
   useEffect(() => {
-    fetch('/store').then(response => {
+    fetch('http://localhost:5000/store').then(response => {
       return response.json()
     }).then(storeData => { setStore(storeData); setdyData(storeData) })}, [])
 
   const [store5, setStore5] = useState([{"store_id":'',"owner_id":'',"quantity":0,"price_per_unit":0,"name":"","geometry":"","st_x":0,"st_y":0}])
   useEffect(() => {
-    fetch('/top5stores').then(response => {
+    fetch('http://localhost:5000/top5stores').then(response => {
       return response.json()
     }).then(storeData5 => {setStore5(storeData5)})}, [])
 

@@ -47,7 +47,7 @@ const Header = () => {
 
   }
 
-  window.location = '/'
+  window.location = ''
 
   return (
     <header>

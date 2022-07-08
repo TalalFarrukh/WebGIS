@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault()
     let user = details['username']; let pass = details['password']
    
-    fetch('http://localhost:5000/userlogin', {
+    fetch('/userlogin', {
         method: 'post',
         mode: 'cors',
         headers: {
@@ -38,7 +38,7 @@ const LoginForm = () => {
       if(owner) {
         let ownerid = owner.owner_id
         
-        fetch('http://localhost:5000/ownerStore', {
+        fetch('/ownerStore', {
           method: 'post',
           mode: 'cors',
           headers: {
@@ -55,7 +55,7 @@ const LoginForm = () => {
 
   const nv = useNavigate()
   
-  window.location = '/'
+  window.location = ''
 
   return (
     <Card border='info'>

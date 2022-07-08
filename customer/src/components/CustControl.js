@@ -19,7 +19,7 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
     e.preventDefault()
     let quantity_greater_than  = quantity.greaterThan; let quantity_less_than  = quantity.lessThan
 
-    fetch("http://localhost:5000/filterQuantity", {
+    fetch("/filterQuantity", {
             method: "post",
             mode: 'cors',
             headers: {
@@ -36,7 +36,7 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
     e.preventDefault()
     let price_greater_than  = price.greaterThan; let price_less_than  = price.lessThan
 
-    fetch("http://localhost:5000/filterPrice", {
+    fetch("/filterPrice", {
             method: "post",
             mode: 'cors',
             headers: {
@@ -52,7 +52,7 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
   const clearFilter = (e) => { cF() }
   const changeShow = (e) => {e.preventDefault(); cbS()}
 
-  window.location = '/'
+  window.location = ''
 
   return (
     <>

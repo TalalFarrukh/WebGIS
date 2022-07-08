@@ -52,6 +52,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
   const onChangePrice = (e) => { setPrice(e.target.value.trim()) }
 
   const onClickQuantity = (e) => {
+    e.preventDefault()
     let quantity = quantities
 
     fetch(`/filterQuantity/${store.store_id}`, {
@@ -67,6 +68,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
   }
 
   const onClickPrice = (e) => {
+    e.preventDefault()
     let price_per_unit = price
 
     fetch(`/filterPrice/${store.store_id}`, {
@@ -81,6 +83,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     }
 
   const onDeleteShop = (e) => {
+    e.preventDefault()
     let owner_id = owner.owner_id; x = 0
 
     fetch(`/deleteStore/${store.store_id}`, {
@@ -95,6 +98,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     }
 
   const onDeleteNetwork = (e) => {
+    e.preventDefault()
     let owner_id = owner.owner_id
 
     fetch(`/deleteNetworks`, {
@@ -110,6 +114,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
 
 
   const onInsert = (e) => {
+    e.preventDefault()
     console.log(polyline)
 
     let owner_id = owner.owner_id
@@ -144,6 +149,8 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
   const toggleShow = () => {
     dispatch(toggle())
   }
+
+  window.location = '/'
 
   return (
     <>

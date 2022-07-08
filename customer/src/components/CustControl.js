@@ -16,7 +16,7 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
   const handleChangeP = (e) => { setPrice({...price, [e.target.name]: e.target.value.trim()}) }
 
   const handleSubmitQ = (e) => {        //Compare with actual quantity
-
+    e.preventDefault()
     let quantity_greater_than  = quantity.greaterThan; let quantity_less_than  = quantity.lessThan
 
     fetch("/filterQuantity", {
@@ -33,7 +33,7 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
   }
 
   const handleSubmitP = (e) => {      //Compare with actual price
-    
+    e.preventDefault()
     let price_greater_than  = price.greaterThan; let price_less_than  = price.lessThan
 
     fetch("/filterPrice", {
@@ -51,6 +51,8 @@ const CustControl = ({cb, cbB, cbS, cF}) => {   //Replace data with actual data
 
   const clearFilter = (e) => { cF() }
   const changeShow = (e) => {e.preventDefault(); cbS()}
+
+  window.location = '/'
 
   return (
     <>

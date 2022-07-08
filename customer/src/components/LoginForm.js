@@ -55,6 +55,8 @@ const LoginForm = () => {
 
   const nv = useNavigate()
   
+  window.location = '/'
+
   return (
     <Card border='info'>
     <Form>

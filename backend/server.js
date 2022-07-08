@@ -1,9 +1,8 @@
 const express = require('express')
 const PORT = process.env.port || 5000
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const client = require('./db.js')
-const cors = require('cors')
-const path = require('path')
+const cors = require('cors');
 
 const app = express()
 app.use(cors())
@@ -12,13 +11,6 @@ app.use(bodyParser.urlencoded({
     extended:true
 }))
 app.use(bodyParser.json())
-
-//app.use(express.static(path.join(__dirname, '../customer/build')))
-
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../customer/build')))
-}
-
 
 app.get('/store', (req,res) => {
     client.query(`SELECT * , ST_X(geometry::geometry), ST_Y(geometry::geometry) FROM store;`, (err, results) => {

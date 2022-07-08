@@ -34,7 +34,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     let name = cStore.storeName
     let owner_id = owner.owner_id
 
-    fetch("/createStores", {
+    fetch("http://localhost:5000/createStores", {
             method: "post",
             mode: 'cors',
             headers: {
@@ -55,7 +55,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     e.preventDefault()
     let quantity = quantities
 
-    fetch(`/filterQuantity/${store.store_id}`, {
+    fetch(`http://localhost:5000/filterQuantity/${store.store_id}`, {
             method: "put",
             mode: 'cors',
             headers: {
@@ -71,7 +71,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     e.preventDefault()
     let price_per_unit = price
 
-    fetch(`/filterPrice/${store.store_id}`, {
+    fetch(`http://localhost:5000/filterPrice/${store.store_id}`, {
             method: "put",
             mode: 'cors',
             headers: {
@@ -86,7 +86,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     e.preventDefault()
     let owner_id = owner.owner_id; x = 0
 
-    fetch(`/deleteStore/${store.store_id}`, {
+    fetch(`http://localhost:5000/deleteStore/${store.store_id}`, {
             method: "put",
             mode: 'cors',
             headers: {
@@ -101,7 +101,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     e.preventDefault()
     let owner_id = owner.owner_id
 
-    fetch(`/deleteNetworks`, {
+    fetch(`http://localhost:5000/deleteNetworks`, {
             method: "post",
             mode: 'cors',
             headers: {
@@ -120,7 +120,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
     let owner_id = owner.owner_id
     let geometry = polyline
 
-    fetch("/createNetwork", {
+    fetch("http://localhost:5000/createNetwork", {
             method: "post",
             mode: 'cors',
             headers: {
@@ -134,7 +134,7 @@ const AdmControl = ({owner,store,mapStore,delFeature,polyline,pN}) => {
   useEffect(() => {
     let owner_id = owner.owner_id
 
-    fetch("/getLines", {
+    fetch("http://localhost:5000/getLines", {
             method: "post",
             mode: 'cors',
             headers: {

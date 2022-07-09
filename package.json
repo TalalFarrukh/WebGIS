@@ -4,7 +4,7 @@
   "description": "Very nice project",
   "main": "server.js",
   "engine": {
-    "node": "16.15.1",
+    "node": "16.16.0",
     "npm": "8.12.1"
   },
   "dependencies": {

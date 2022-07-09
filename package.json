@@ -73,12 +73,11 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "dev": "react-scripts start",
     "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix customer",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "heroku-postbuild": "cd customer && npm install && npm run build"
   },
   "author": "Talal",
   "license": "ISC"

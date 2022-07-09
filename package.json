@@ -2,7 +2,7 @@
   "name": "webgisproj",
   "version": "1.0.0",
   "description": "Very nice project",
-  "main": "server.js",
+  "main": "backend/server.js",
   "engines": {
     "node": "16.16.0",
     "npm": "8.12.1"

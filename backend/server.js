@@ -238,6 +238,6 @@ app.post("/getLines", (req, res) => {
 //   res.sendFile(path.join(__dirname, '../customer/build/index.html'))
 // })
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.', () => {
     console.log(`Server listening on ${PORT}`)
 })

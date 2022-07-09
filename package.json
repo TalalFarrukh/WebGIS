@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Very nice project",
   "main": "server.js",
-  "engine": {
+  "engines": {
     "node": "16.16.0",
     "npm": "8.12.1"
   },

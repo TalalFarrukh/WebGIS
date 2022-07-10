@@ -73,7 +73,7 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "serve -s build",
     "server": "nodemon backend/server",
     "client": "npm start --prefix customer",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",

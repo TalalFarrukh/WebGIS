@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const client = require('./db.js')
 const cors = require('cors')
 const path = require("path");
+require("dotenv").config()
 
 const app = express()
 app.use(cors())

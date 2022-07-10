@@ -73,11 +73,11 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "serve -s build --prefix customer",
     "server": "nodemon backend/server",
     "client": "npm start --prefix customer",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
-   
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "heroku-postbuild": "cd customer && npm install && npm run build"
   },
   "author": "Talal",
   "license": "ISC"

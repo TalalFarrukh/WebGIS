@@ -180,7 +180,7 @@ const Map = ({ownerData, storeData}) => {
       </Card>
 
       <Card className='side-space'>
-      {location.pathname==='/' ? <CustControl cb={callback} cbB={callbackBuffer} cbS={cbShow} cF={clearFilterCB} /> 
+      {location.pathname==='/Home/' ? <CustControl cb={callback} cbB={callbackBuffer} cbS={cbShow} cF={clearFilterCB} /> 
       : location.pathname==='/Admin/' ? <AdmControl owner={ownerData} store={storeData} mapStore={store} delFeature={_onDeleted} polyline={passLyr} pN={plotNetwork} /> : null}
       </Card>
 

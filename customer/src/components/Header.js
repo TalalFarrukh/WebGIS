@@ -51,7 +51,7 @@ const Header = () => {
     <header>
         <Navbar bg='dark' variant='dark' expand='lg'>
             <Container>
-              {location.pathname==='/Home/' ? <LinkContainer to='/'><Navbar.Brand className='center-navbar'>Product Tracker</Navbar.Brand></LinkContainer>
+              {location.pathname==='/' ? <LinkContainer to='/Home/'><Navbar.Brand className='center-navbar'>Product Tracker</Navbar.Brand></LinkContainer>
                : location.pathname==='/Admin/' ? <LinkContainer to='/Admin/'><Navbar.Brand className='center-navbar'>Product Tracker</Navbar.Brand></LinkContainer> 
                : null}
               
@@ -66,7 +66,7 @@ const Header = () => {
 
               <Nav className='ms-auto'>
                 {location.pathname==='/Admin/' ? <LinkContainer to='/'><Nav.Link><i className='fas fa-user'></i>Logout</Nav.Link></LinkContainer> :
-                location.pathname==='/Home/' ? <LinkContainer to='/storeowner/login'><Nav.Link><i className='fas fa-user'></i>Login as Store Owner</Nav.Link></LinkContainer>
+                location.pathname==='/' ? <LinkContainer to='/storeowner/login'><Nav.Link><i className='fas fa-user'></i>Login as Store Owner</Nav.Link></LinkContainer>
                 : null}
               </Nav>
 

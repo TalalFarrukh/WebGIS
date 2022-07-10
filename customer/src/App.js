@@ -14,7 +14,7 @@ const App = () => {
 
       <main>
       <Routes>
-        <Route path='/Home/' element={<HomeScreen />} exact />
+        <Route path='/' element={<HomeScreen />} exact />
         <Route path='/Admin/' element={<AdminScreen />} />
         <Route path='/storeowner/' element={<LoginSignup />} >
           <Route path='login' element={<LoginForm />} />

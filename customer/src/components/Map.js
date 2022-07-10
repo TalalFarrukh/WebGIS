@@ -132,13 +132,13 @@ const Map = ({ownerData, storeData}) => {
           : null}
 
           <LayersControl position="topright">  
-            <BaseLayer checked name="Default View">
+            {/* <BaseLayer checked name="Default View">
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            </BaseLayer>
+            </BaseLayer> */}
 
-            <BaseLayer name="Satellite View">
+            <BaseLayer checked name="Default View">
               <TileLayer url="https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" subdomains={['mt1','mt2','mt3']} />
             </BaseLayer>
 
@@ -180,7 +180,7 @@ const Map = ({ownerData, storeData}) => {
       </Card>
 
       <Card className='side-space'>
-      {location.pathname==='/Home/' ? <CustControl cb={callback} cbB={callbackBuffer} cbS={cbShow} cF={clearFilterCB} /> 
+      {location.pathname==='/' ? <CustControl cb={callback} cbB={callbackBuffer} cbS={cbShow} cF={clearFilterCB} /> 
       : location.pathname==='/Admin/' ? <AdmControl owner={ownerData} store={storeData} mapStore={store} delFeature={_onDeleted} polyline={passLyr} pN={plotNetwork} /> : null}
       </Card>
 

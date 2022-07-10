@@ -15,7 +15,11 @@ app.use(bodyParser.json())
 
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../customer/build")));
+  app.use(express.static(path.join(__dirname, "../customer/build")))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../customer/build/index.html'))
+  })
 }
 
 app.get('/store', (req,res) => {
@@ -233,10 +237,6 @@ app.post("/getLines", (req, res) => {
   client.end
 })
 
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../customer/build/index.html'))
-})
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`)

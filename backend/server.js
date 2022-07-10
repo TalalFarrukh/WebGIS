@@ -17,10 +17,10 @@ app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === "production") {
   
-  app.use(express.static(path.join(__dirname, "../customer/build")))
+  app.use(express.static(path.join(__dirname, "../customer/public")))
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../customer/build/index.html'))
+    res.sendFile(path.resolve(__dirname, '../customer/public/index.html'))
   })
 }
 

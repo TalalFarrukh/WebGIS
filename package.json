@@ -76,8 +76,7 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server",
     "client": "npm start --prefix customer",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "heroku-postbuild": "cd customer && npm install && npm run build"
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Talal",
   "license": "ISC"

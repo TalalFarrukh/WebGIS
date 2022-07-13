@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 
-if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production") {
   
-  app.use(express.static(path.join(__dirname, "../customer/public")))
+//   app.use(express.static(path.join(__dirname, "../customer/public")))
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../customer/public/index.html'))
-  })
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../customer/public/index.html'))
+//   })
+// }
 
 app.get('/store', (req,res) => {
     client.query(`SELECT * , ST_X(geometry::geometry), ST_Y(geometry::geometry) FROM store;`, (err, results) => {
@@ -240,6 +240,6 @@ app.post("/getLines", (req, res) => {
 })
 
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`)
 })

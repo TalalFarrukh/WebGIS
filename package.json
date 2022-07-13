@@ -76,7 +76,8 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server",
     "client": "npm start --prefix customer",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "vercel-postbuild": "cd customer && npm install && npm run build"
   },
   "author": "Talal",
   "license": "ISC"
